@@ -2,17 +2,25 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware.nix
+  ];
 
   hardware.enableAllFirmware = true;
   hardware.graphics.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
 
   # Use the GRUB 2 boot loader.
@@ -36,7 +44,10 @@
     hostName = "roy";
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [ 3000 11434 ];
+      allowedTCPPorts = [
+        3000
+        11434
+      ];
     };
   };
 
@@ -52,18 +63,24 @@
         ports = [ "3000:8080" ];
         volumes = [ "open-webui:/app/backend/data" ];
         extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
-        environment = { OLLAMA_BASE_URL = "http://host.docker.internal:11434"; };
+        environment = {
+          OLLAMA_BASE_URL = "http://host.docker.internal:11434";
+        };
       };
     };
   };
 
   services = {
-    resolved = { enable = true; };
+    resolved = {
+      enable = true;
+    };
     displayManager.gdm = {
       enable = true;
     };
     desktopManager.gnome.enable = true;
-    gnome = { games.enable = false;  };
+    gnome = {
+      games.enable = false;
+    };
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -94,10 +111,12 @@
     isNormalUser = true;
     description = "Isaac Azuelos";
     extraGroups = [
-      "wheel"          # Enable ‘sudo’ for the user.
-      "render" "video" # GPU access
-      "dialout" "tty"  # For MCU nonsense
-      "docker"         # No points for guessing
+      "wheel" # Enable ‘sudo’ for the user.
+      "render"
+      "video" # GPU access
+      "dialout"
+      "tty" # For MCU nonsense
+      "docker" # No points for guessing
     ];
     home = "/home/iaz";
     shell = pkgs.fish;
