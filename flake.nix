@@ -38,7 +38,7 @@
           ./roy/configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-amanger.users.iaz = import ./roy/home.nix;
+            home-manager.users.iaz = import ./roy/home.nix;
           }
         ];
       };

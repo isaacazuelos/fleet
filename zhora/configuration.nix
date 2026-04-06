@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
-  system.stateVersion = "25.11";
+  system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  nix.enable = false;
+  # Thsi is disabled for now, until I get off the determinate.systems installer.
+  nix.enable = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -35,6 +36,7 @@
     };
     casks = [
       "1password"
+      "claude"
       "cyberduck"
       "discord"
       "firefox"
@@ -75,7 +77,7 @@
         persistent-others = [
           {
             folder = {
-              path = "/Users/@username@/Downloads";
+              path = "/Users/iaz/Downloads";
               showas = "grid";
             };
           }
