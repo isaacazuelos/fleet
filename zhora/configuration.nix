@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  system.stateVersion = 5;
+  system.stateVersion = "25.11";
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   nix.enable = false;
@@ -12,9 +12,14 @@
 
   environment = {
     systemPackages = with pkgs; [
-      git
       nh
     ];
+  };
+
+  # 
+  homebrew = {
+    enable = true;
+    casks = [ "obsidian" ];
   };
 
   system = {
@@ -36,9 +41,9 @@
         show-recents = false;
         persistent-apps = [  
           { app = "/Applications/Safari.app"; }
-          { app = "/Applications/Messages.app"; }
-          { app = "/Applications/Mail.app"; }
-          { app = "/Applications/Terminal.app"; }
+          { app = "/System/Applications/Messages.app"; }
+          { app = "/System/Applications/Mail.app"; }
+          { app = "/System/Applications/Terminal.app"; }
         ];
         persistent-others = [  
           { folder = { path = "/Users/@username@/Downloads"; showas = "grid"; }; }
