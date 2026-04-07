@@ -1,14 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 {
-  config,
-  lib,
+  # config,
+  # lib,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware.nix
@@ -60,9 +58,9 @@
       backend = "docker";
       containers.open-webui = {
         image = "ghcr.io/open-webui/open-webui:main";
-        ports = [ "3000:8080" ];
-        volumes = [ "open-webui:/app/backend/data" ];
-        extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+        ports = ["3000:8080"];
+        volumes = ["open-webui:/app/backend/data"];
+        extraOptions = ["--add-host=host.docker.internal:host-gateway"];
         environment = {
           OLLAMA_BASE_URL = "http://host.docker.internal:11434";
         };
@@ -86,7 +84,6 @@
       pulse.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-
     };
     openssh = {
       enable = true;
@@ -94,7 +91,7 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = [ "iaz" ];
+        AllowUsers = ["iaz"];
       };
     };
     tailscale = {
@@ -129,7 +126,7 @@
     _1password.enable = true;
     _1password-gui = {
       enable = true;
-      polkitPolicyOwners = [ "iaz" ];
+      polkitPolicyOwners = ["iaz"];
     };
     firefox.enable = true;
     fish.enable = true;

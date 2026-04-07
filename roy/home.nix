@@ -1,13 +1,12 @@
-{ pkgs, ... }:
-{
-  imports = [ ../common/home.nix ];
+{pkgs, ...}: {
+  imports = [../common/home.nix];
 
   home = {
     stateVersion = "25.11";
     username = "iaz";
     homeDirectory = "/Users/iaz";
 
-    packages = with pkgs; {
+    packages = with pkgs; [
       vscode.fhs
       zed-editor-fhs
       github-desktop
@@ -16,6 +15,6 @@
       obsidian
       orca-slicer
       plex-desktop
-    };
+    ];
   };
 }

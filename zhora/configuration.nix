@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -73,7 +72,7 @@
         NewWindowTarget = "Home";
         ShowPathbar = true;
       };
-      menuExtraClock = { Show24Hour = true; };
+      menuExtraClock = {Show24Hour = true;};
       trackpad = {
         Clicking = true;
         TrackpadPinch = true;
@@ -91,10 +90,10 @@
         show-recents = false;
         persistent-apps = [
           # Huh? No idea why these are not just in /Applications
-          { app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"; }
-          { app = "/System/Applications/Messages.app"; }
-          { app = "/System/Applications/Mail.app"; }
-          { app = "/System/Applications/Utilities/Terminal.app"; }
+          {app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app";}
+          {app = "/System/Applications/Messages.app";}
+          {app = "/System/Applications/Mail.app";}
+          {app = "/System/Applications/Utilities/Terminal.app";}
         ];
         persistent-others = [
           {

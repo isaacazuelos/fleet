@@ -1,20 +1,20 @@
-{ pkgs, ... }:
-{
-
-  home ={
+{pkgs, ...}: {
+  home = {
     packages = with pkgs; [
       age
+      alejandra
       bat
       fzf
       git
       nix-your-shell
       ripgrep
+      statix
       tmux
 
       # language servers
-      lua-language-server      # for neovim
+      lua-language-server # for neovim
       nixd
-      nil                      # zed likes having both?
+      nil # zed likes having both?
     ];
   };
 
