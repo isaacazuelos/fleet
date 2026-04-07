@@ -120,8 +120,6 @@
     ];
     home = "/home/iaz";
     shell = pkgs.fish;
-    packages = with pkgs; [
-    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont"
     ];
@@ -139,7 +137,6 @@
       enable = true;
       remotePlay.openFirewall = true;
     };
-    neovim.enable = true;
     nh = {
       enable = true;
       clean.enable = true;
@@ -151,24 +148,8 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     cifs-utils
-    fzf
-    git
-    tmux
-    vim
-    ripgrep
-    bat
-
-    vscode.fhs
-    zed-editor-fhs
-    github-desktop
-
-    discord
-    obsidian
-    orca-slicer
-    plex-desktop
 
     fishPlugins.fzf-fish
-    nix-your-shell
   ];
 
   # for vscode on wayland

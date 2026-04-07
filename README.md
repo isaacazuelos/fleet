@@ -6,6 +6,10 @@ the interface.
 
 ## Machines
 
+### Common
+
+Here's are the common user environment bits between these machines.
+
 ### Zhora
 > An M1 MacBook Air
 

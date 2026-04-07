@@ -1,17 +1,22 @@
 { pkgs, ... }:
 {
 
-  home.packages = with pkgs; [
-    bat
-    fzf
-    ripgrep
-    tmux
+  home ={
+    packages = with pkgs; [
+      age
+      bat
+      fzf
+      git
+      nix-your-shell
+      ripgrep
+      tmux
 
-    # language servers
-    lua-language-server  # for neovim
-    nixd
-    nil                      # zed likes having both?
-  ];
+      # language servers
+      lua-language-server      # for neovim
+      nixd
+      nil                      # zed likes having both?
+    ];
+  };
 
   programs = {
     git = {
