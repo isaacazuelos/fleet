@@ -10,6 +10,16 @@
     "flakes"
   ];
 
+  networking = {
+    hostName = "zhora";
+    computerName = "Zhora";
+    applicationFirewall = {
+      enable = true;
+      enableStealthMode = true;
+      blockAllIncoming = true;
+    };
+  };
+
   users.users.iaz = {
     name = "iaz";
     home = "/Users/iaz";
@@ -19,7 +29,6 @@
     systemPackages = with pkgs; [
       mas
       nh
-      tailscale
     ];
   };
 
@@ -44,6 +53,7 @@
       "obsidian"
       "orcaslicer"
       # "private-internet-access"
+      "tailscale-app"
       "transmission"
       "vlc"
       "zed"
@@ -52,6 +62,7 @@
 
   system = {
     primaryUser = "iaz";
+    startup.chime = true;
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToControl = true;
@@ -59,11 +70,22 @@
     defaults = {
       finder = {
         AppleShowAllExtensions = true;
+        NewWindowTarget = "Home";
+        ShowPathbar = true;
+      };
+      menuExtraClock = { Show24Hour = true; };
+      trackpad = {
+        Clicking = true;
+        TrackpadPinch = true;
+        TrackpadRightClick = true;
+        TrackpadRotate = true;
+        TrackpadThreeFingerVertSwipeGesture = 2;
       };
       dock = {
         autohide = true;
         magnification = true;
-        largesize = 24;
+        tilesize = 48;
+        largesize = 64;
         mineffect = "scale";
         orientation = "left";
         show-recents = false;

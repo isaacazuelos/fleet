@@ -21,7 +21,8 @@ How to deploy from a fresh install:
 7. Bootstrap it. We need to run this with the `nix` command, and as a `flake`,
    and we need to run it as `root`, so the command is long.
    ```bash
-   sudo NIX_CONFIG="experimental-features = nix-command flakes" nix run nix-darwin -- switch --flake ~/src/fleet#zhora
+   sudo NIX_CONFIG="experimental-features = nix-command flakes" \
+        nix run nix-darwin -- switch --flake ~/src/fleet#zhora
    ```
 
 From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
@@ -32,8 +33,10 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 - Set Desktop wallpaper
 - 1Password Safari Extension
 - Set terminal to God's own size (80x24) and fix fonts.
+- Set up 1Password
+  - Don't forget to set up the ssh agent.
 
 ### Roy
 > A NixOS box with a Ryzen 3600 and RX 5700 XT
 
-Not fully set up yet.
+Not fully set up with home-manager, etc. yet.

@@ -6,7 +6,11 @@
     fzf
     ripgrep
     tmux
+
+    # language servers
+    lua-language-server  # for neovim
     nixd
+    nil                      # zed likes having both?
   ];
 
   programs = {
@@ -15,10 +19,7 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      extraLuaConfig = ''
-        vim.opt.number = true;
-        vim.opt.shortmess:append("I");
-      '';
+      extraLuaConfig = builtins.readFile ./nvim/init.lua;
     };
   };
 }
