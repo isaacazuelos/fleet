@@ -34,7 +34,7 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 - 1Password Safari Extension
 - Set terminal to God's own size (80x24) and fix fonts.
 - Set up 1Password
-  - Don't forget to set up the ssh agent.
+  - Don't forget to set up the ssh agent, and git setup.
 
 ### Roy
 > A NixOS box with a Ryzen 3600 and RX 5700 XT

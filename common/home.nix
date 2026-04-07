@@ -14,6 +14,18 @@
   ];
 
   programs = {
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "Isaac Azuelos";
+          email = "isaac@azuelos.ca";
+        };
+        init.defaultBranch = "main";
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+      };
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
