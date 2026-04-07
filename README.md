@@ -6,6 +6,11 @@ the interface.
 
 ## Machines
 
+- **Zhora** - Laptop
+- **Roy** - Desktop
+- **Leon** - Server
+- **Brainiac** - NAS
+
 ### Common
 
 Here's are the common user environment bits between these machines.
@@ -16,9 +21,9 @@ Here's are the common user environment bits between these machines.
 How to deploy from a fresh install:
 
 1. Set up the user account (use `iaz` for consistency).
-2. Check for and install any macOS system udpates.
+2. Check for and install any macOS system updates.
 3. Install the Xcode CLI tools with `xcode-select --install`
-4. Install [Brew](https://brew.sh), so we can use Casks for mac GUI apss.
+4. Install [Brew](https://brew.sh), so we can use Casks for mac GUI apps.
 5. Install [Nix](https://nixos.org/download/).
 6. Clone this repo with `git clone https://github.com/isaacazuelos/fleet`
     - Put it in `~/src`, which you'll need to make.
@@ -33,7 +38,7 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 
 #### Manual things
 
-- Install fonts off Brianiac
+- Install fonts off Brainiac
 - Set Desktop wallpaper
 - 1Password Safari Extension
 - Set terminal to God's own size (80x24) and fix fonts.
@@ -46,7 +51,7 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 I set the up after installing, but I think starting with configuration.nix and
 hardware.nix, then after install dropping the flake in should work.
 
-### Chippy
+### Leon
+> A NixOS Nuc with a i3-10110U
 
-I'm planning to nixify this soon, just putting the tricky bits down here for
-when I do.
+I'm currently nixifying this. What's here is what I had on debian before.

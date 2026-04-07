@@ -1,7 +1,6 @@
-{pkgs, ...}: {
-  imports = [../common/home.nix];
-
-  nixpkgs.config.allowUnfree = true;
+{ pkgs, ... }:
+{
+  imports = [ ../common/home.nix ];
 
   home = {
     stateVersion = "25.11";
@@ -29,10 +28,12 @@
     };
     ssh = {
       enable = true;
-      extraConfig = ''
-          Host *
-            IdentityAgent ~/.1password/agent.sock
-      '';
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        extraOptions = {
+          IdentityAgent = "~/.1password/agent.sock";
+        };
+      };
     };
   };
 }

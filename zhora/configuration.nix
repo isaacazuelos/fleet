@@ -2,7 +2,6 @@
   system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # Thsi is disabled for now, until I get off the determinate.systems installer.
   nix.enable = true;
   nix.settings.experimental-features = [
     "nix-command"
@@ -32,11 +31,10 @@
   };
 
   # This won't install homebrew, so we need to do that first.
-  # - Mac App Store apps aren't working, but I keep a list here.
-  # - We use casks elsewhere for gui apps.
-  # - Comment out lines are things which have failed.
   homebrew = {
     enable = true;
+    # Mac App Store apps aren't working, but I keep these here so I know what
+    # to go get manually.
     masApps = {
       # "1Password 7 - Password Manager" = 1333542190;
       # "Things 3" = 904280696;
@@ -51,7 +49,6 @@
       "github"
       "obsidian"
       "orcaslicer"
-      # "private-internet-access"
       "tailscale-app"
       "transmission"
       "vlc"
@@ -72,7 +69,9 @@
         NewWindowTarget = "Home";
         ShowPathbar = true;
       };
-      menuExtraClock = {Show24Hour = true;};
+      menuExtraClock = {
+        Show24Hour = true;
+      };
       trackpad = {
         Clicking = true;
         TrackpadPinch = true;

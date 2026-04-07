@@ -26,6 +26,7 @@
         ./zhora/configuration.nix
         home-manager.darwinModules.home-manager
         {
+          home-manager.useGlobalPkgs = true;
           home-manager.users.iaz = import ./zhora/home.nix;
         }
       ];
@@ -37,6 +38,7 @@
         ./roy/configuration.nix
         home-manager.nixosModules.home-manager
         {
+          home-manager.useGlobalPkgs = true;
           home-manager.users.iaz = import ./roy/home.nix;
         }
       ];

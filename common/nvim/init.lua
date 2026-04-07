@@ -7,11 +7,11 @@ vim.opt.shortmess:append("I");
 vim.lsp.start({
     name = "lua_ls",
     cmd = { "lua-language-server" },
-    filetaypes = { "lua" },
+    filetypes = { "lua" },
 })
 
 vim.lsp.start({
     name = "nixd",
     cmd = { "nixd" },
-    filetaypes = { "nix" },
+    filetypes = { "nix" },
 })
