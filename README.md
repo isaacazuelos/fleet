@@ -40,3 +40,8 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 > A NixOS box with a Ryzen 3600 and RX 5700 XT
 
 Not fully set up with home-manager, etc. yet.
+
+### Chippy
+
+I'm planning to nixify this soon, just putting the tricky bits down here for
+when I do.

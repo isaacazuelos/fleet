@@ -1,0 +1,74 @@
+---
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /users/iaz/docker/seedbox/plex:/config
+      - /mnt/brainiac-data/television:/tv
+      - /mnt/brainiac-data/movies:/movies
+    ports:
+      # From: https://support.plex.tv/articles/201543147
+      - 32400:32400      # Server access [required]
+      - 1900:1900/udp    # Plex DLNA Server
+      - 32410:32410/udp  # GDM network discovery
+      - 32412:32412/udp  # GDM network discovery
+      - 32413:32413/udp  # GDM network discovery
+      - 32414:32414/udp  # GDM network discovery
+      - 32469:32469      # Plex DLNA Server
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /users/iaz/docker/seedbox/radarr:/config
+      - /mnt/brainiac-data/movies:/movies #optional
+      - /mnt/brainiac-data/#inbox/complete-downloads:/complete-downloads #optional
+      - /mnt/brainiac-data/#inbox/incomplete-downloads:/incomplete-downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /users/iaz/docker/seedbox/sonarr:/config
+      - /mnt/brainiac-data/television:/tv #optional
+      - /mnt/brainiac-data/#inbox/complete-downloads:/complete-downloads #optional
+      - /mnt/brainiac-data/#inbox/incomplete-downloads:/incomplete-downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /users/iaz/docker/seedbox/sabnzbd:/config
+      - /mnt/brainiac-data/#inbox/incomplete-downloads:/incomplete-downloads #optional
+      - /mnt/brainiac-data/#inbox/complete-downloads:/complete-downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped
