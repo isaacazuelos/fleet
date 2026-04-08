@@ -1,7 +1,6 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 {
   # config,
   # lib,
@@ -27,6 +26,7 @@
       "iocharset=utf8"
       "_netdev"
       "nofail"
+      "noperm"
     ];
   };
 
@@ -46,6 +46,7 @@
   networking = {
     hostName = "leon";
     networkmanager.enable = true;
+    interfaces.en01.wakeOnLan.enable = true;
   };
 
   time.timeZone = "Canada/Mountain";
@@ -56,6 +57,9 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     home = "/home/iaz";
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -103,19 +107,41 @@
     tailscale = {
       enable = true;
     };
+
+    # Media Center stuff
+    plex = {
+      enable = true;
+      openFirewall = true;
+    };
+    sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    radarr = {
+      enable = true;
+      openFirewall = true;
+    };
+    sabnzbd = {
+      enable = true;
+    };
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
+  systemd = {
+    # from the wiki https://nixos.wiki/wiki/Power_Management
+    sleep.extraConfig = ''
+      AllowSuspend=no
+      AllowHibernation=no
+      AllowHybridSleep=no
+      AllowSuspendThenHibernate=no
+    '';
+    # maybe for gnome too? https://discourse.nixos.org/t/stop-pc-from-sleep/5757
+    targets = {
+      sleep.enable = false;
+      suspend.enable = false;
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
+  };
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #
@@ -134,5 +160,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }

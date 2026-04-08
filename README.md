@@ -1,4 +1,4 @@
-# fleet
+# Fleet
 > Config files for my machines.
 
 Everything should be managed by the single `nix` flake, and I'm using `nh` as
@@ -10,10 +10,13 @@ the interface.
 - **Roy** - Desktop
 - **Leon** - Server
 - **Brainiac** - NAS
+- **Tom Servo & Crow** - Vorons
 
 ### Common
 
 Here's are the common user environment bits between these machines.
+
+You'll want to set up Tailscale with `tailscale login` after setup.
 
 ### Zhora
 > An M1 MacBook Air
@@ -48,14 +51,23 @@ From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 ### Roy
 > A NixOS box with a Ryzen 3600 and RX 5700 XT
 
-I set the up after installing, but I think starting with configuration.nix and
-hardware.nix, then after install dropping the flake in should work.
+I set the up after installing, but it's probably similar to Leon.
 
 ### Leon
 > A NixOS Nuc with a i3-10110U
 
+Install nixos using the default nixos-generate etc. Then reboot and log in, 
+`git clone` fleet, and from there install from the flake.
+
+#### Manual Steps
+
+##### SMB share 
+
 You'll need to manually create `/etc/smbcredentials`. After deploying a new 
-machine, create the file and `chmod` it.
+machine, create the file and `chmod` it. It's also set up with `noperm` so it
+doesn't really manage permissions for the various services which use it. I had
+a lot of issues trying to get it to mount with a group, so I gave up and did
+that instead.
 
 ```sh
 sudo vi /etc/smbcredentials
@@ -68,3 +80,13 @@ Format for `smbcredentials`:
 username=iaz
 password=super-secure
 ```
+
+##### Service config
+
+You'll have to manually go to each media center service and configure it.
+
+### Tom Server & Crow
+> RPi 4 based V2.4r2 and V0.2 
+
+A couple of Vorons, they're not nixified or really backed up or documented 
+much at all. Maybe some day.
