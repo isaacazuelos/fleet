@@ -13,47 +13,49 @@
     };
   };
 
-  outputs = {
-    # self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    ...
-  }: {
-    darwinConfigurations.zhora = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        ./zhora/configuration.nix
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.iaz = import ./zhora/home.nix;
-        }
-      ];
-    };
+  outputs =
+    {
+      # self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }:
+    {
+      darwinConfigurations.zhora = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./zhora/configuration.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.iaz = import ./zhora/home.nix;
+          }
+        ];
+      };
 
-    nixosConfigurations.roy = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./roy/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.iaz = import ./roy/home.nix;
-        }
-      ];
+      nixosConfigurations.roy = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./roy/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.iaz = import ./roy/home.nix;
+          }
+        ];
+      };
+
+      nixosConfigurations.leon = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./leon/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.iaz = import ./leon/home.nix;
+          }
+        ];
+      };
     };
-    
-    nixosConfigurations.leon = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./leon/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.iaz = import ./leon/home.nix;
-        }
-      ];
-    };
-  };
 }

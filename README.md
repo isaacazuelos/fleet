@@ -36,7 +36,7 @@ How to deploy from a fresh install:
 
 From now on, you can use `nh darwin switch ~/src/fleet#zhora` to apply changes.
 
-#### Manual things
+#### Manual Steps
 
 - Install fonts off Brainiac
 - Set Desktop wallpaper
@@ -54,4 +54,17 @@ hardware.nix, then after install dropping the flake in should work.
 ### Leon
 > A NixOS Nuc with a i3-10110U
 
-I'm currently nixifying this. What's here is what I had on debian before.
+You'll need to manually create `/etc/smbcredentials`. After deploying a new 
+machine, create the file and `chmod` it.
+
+```sh
+sudo vi /etc/smbcredentials
+sudo chmod 600 /etc/smbcredentials
+```
+
+Format for `smbcredentials`:
+
+```
+username=iaz
+password=super-secure
+```

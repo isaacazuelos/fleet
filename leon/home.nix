@@ -19,6 +19,7 @@
       signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont";
       settings = {
         core.sshCommand = "ssh";
+        "gpg \"ssh\"".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
       };
     };
     ssh = {

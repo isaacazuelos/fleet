@@ -2,19 +2,33 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ 
-  # config, 
-  # lib, 
-  pkgs, 
-  ... 
-}: {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware.nix
-    ];
+{
+  # config,
+  # lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware.nix
+  ];
 
   hardware.enableAllFirmware = true;
   hardware.graphics.enable = true;
+
+  fileSystems."/mnt/brainiac" = {
+    device = "//10.0.1.111/data";
+    fsType = "cifs";
+    options = [
+      "credentials=/etc/smbcredentials"
+      "uid=1000"
+      "gid=1000"
+      "iocharset=utf8"
+      "_netdev"
+      "nofail"
+    ];
+  };
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -54,7 +68,7 @@
     _1password.enable = true;
     _1password-gui = {
       enable = true;
-      polkitPolicyOwners = ["iaz"];
+      polkitPolicyOwners = [ "iaz" ];
     };
     fish.enable = true;
     firefox.enable = true;
@@ -82,14 +96,14 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = ["iaz"];
+        AllowUsers = [ "iaz" ];
       };
     };
     resolved.enable = true;
     tailscale = {
       enable = true;
     };
-  }; 
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -122,4 +136,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-
