@@ -43,5 +43,17 @@
         }
       ];
     };
+    
+    nixosConfigurations.leon = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./leon/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.users.iaz = import ./leon/home.nix;
+        }
+      ];
+    };
   };
 }
