@@ -29,6 +29,7 @@
         init.defaultBranch = "main";
         commit.gpgsign = true;
         gpg.format = "ssh";
+        ignores = [ ".DS_Store" ];
       };
     };
     neovim = {
