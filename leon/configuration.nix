@@ -46,7 +46,6 @@
   networking = {
     hostName = "leon";
     networkmanager.enable = true;
-    interfaces.en01.wakeOnLan.enable = true;
   };
 
   time.timeZone = "Canada/Mountain";
@@ -69,13 +68,7 @@
   ];
 
   programs = {
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = [ "iaz" ];
-    };
     fish.enable = true;
-    firefox.enable = true;
     nh = {
       enable = true;
       clean.enable = true;
@@ -85,9 +78,8 @@
 
   services = {
     # Not really needed for a server, but nice to have if anything breaks.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome.games.enable = false;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
 
     avahi = {
       enable = true;
@@ -126,22 +118,6 @@
     };
   };
 
-  systemd = {
-    # from the wiki https://nixos.wiki/wiki/Power_Management
-    sleep.extraConfig = ''
-      AllowSuspend=no
-      AllowHibernation=no
-      AllowHybridSleep=no
-      AllowSuspendThenHibernate=no
-    '';
-    # maybe for gnome too? https://discourse.nixos.org/t/stop-pc-from-sleep/5757
-    targets = {
-      sleep.enable = false;
-      suspend.enable = false;
-      hibernate.enable = false;
-      hybrid-sleep.enable = false;
-    };
-  };
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #

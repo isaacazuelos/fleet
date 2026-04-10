@@ -21,7 +21,7 @@
   programs = {
     git = {
       enable = true;
-      settings = {
+      settings = { 
         user = {
           name = "Isaac Azuelos";
           email = "isaac@azuelos.ca";
