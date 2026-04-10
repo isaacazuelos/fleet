@@ -21,6 +21,7 @@
   programs = {
     git = {
       enable = true;
+      ignores = [ ".DS_Store" ];
       settings = { 
         user = {
           name = "Isaac Azuelos";
@@ -29,7 +30,6 @@
         init.defaultBranch = "main";
         commit.gpgsign = true;
         gpg.format = "ssh";
-        ignores = [ ".DS_Store" ];
       };
     };
     neovim = {
