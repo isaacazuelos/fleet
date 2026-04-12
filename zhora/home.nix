@@ -24,10 +24,15 @@
     ghostty = {
       enable = true;
       package = pkgs.ghostty-bin;
+      enableFishIntegration = true;
       settings = {
         font-family = "Berkeley Mono";
         font-size = 14;
         command = "/opt/homebrew/bin/fish --login --interactive";
+	window-padding-x = 16;
+	window-padding-y = 16;
+	background-opacity = 0.75;
+	background-blur = "macos-glass-regular";
       };
     };
     git = {
