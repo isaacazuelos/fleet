@@ -1,6 +1,7 @@
 -- Neovim Config
 
-vim.opt.number = true;
+vim.opt.number = true
+vim.cmd.colorscheme("neogotham")
 vim.opt.shortmess:append("I");
 
 -- Fuzzy file finder (Ctrl-P)

@@ -41,6 +41,15 @@
         plenary-nvim
         telescope-nvim
         nvim-tree-lua
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "neogotham";
+          src = pkgs.fetchFromGitLab {
+            owner = "shmerl";
+            repo = "neogotham";
+            rev = "HEAD";
+            sha256 = "sha256-5hCXNCgcZDZDTTPHc/zZdBM3P6ZIv2wlVkVXNWlQ/yM=";
+          };
+        })
       ];
       extraLuaConfig = builtins.readFile ./nvim/init.lua;
     };
