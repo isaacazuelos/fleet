@@ -62,6 +62,7 @@
       "github"
       "obsidian"
       "orcaslicer"
+      "plex"
       "tailscale-app"
       "transmission"
       "vlc"
