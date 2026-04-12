@@ -37,6 +37,11 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+      plugins = with pkgs.vimPlugins; [
+        plenary-nvim
+        telescope-nvim
+        nvim-tree-lua
+      ];
       extraLuaConfig = builtins.readFile ./nvim/init.lua;
     };
   };
