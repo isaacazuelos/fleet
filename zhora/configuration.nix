@@ -1,12 +1,19 @@
 {pkgs, ...}: {
   system.stateVersion = 6;
-  nixpkgs.hostPlatform = "aarch64-darwin";
+
+  nixpkgs = {
+    hostPlatform = "aarch64-darwin";
+    config.allowUnfree = true;
+  };
 
   nix.enable = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    warn-dirty = false;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   networking = {
     hostName = "zhora";
@@ -23,6 +30,8 @@
     home = "/Users/iaz";
   };
 
+  programs.fish.enable = true;
+
   environment = {
     systemPackages = with pkgs; [
       mas
@@ -33,6 +42,10 @@
   # This won't install homebrew, so we need to do that first.
   homebrew = {
     enable = true;
+    # Nix fish is only ad-hoc signed (no TeamIdentifier), so macOS kills it.
+    # We install fish via Homebrew for ghostty, and rely on
+    # `programs.fish.enable` to manage the config and integrations.
+    brews = ["fish"];
     # Mac App Store apps aren't working, but I keep these here so I know what
     # to go get manually.
     masApps = {
@@ -92,7 +105,7 @@
           {app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app";}
           {app = "/System/Applications/Messages.app";}
           {app = "/System/Applications/Mail.app";}
-          {app = "/System/Applications/Utilities/Terminal.app";}
+          {app = "${pkgs.ghostty-bin}/Applications/Ghostty.app";}
         ];
         persistent-others = [
           {

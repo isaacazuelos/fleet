@@ -1,7 +1,4 @@
-{
-  # pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [../common/home.nix];
 
   home = {
@@ -15,6 +12,24 @@
   };
 
   programs = {
+    claude-code = {
+      enable = true;
+    };
+    fish = {
+      enable = true;
+      shellInit = ''
+        set -gx PATH $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin $PATH
+      '';
+    };
+    ghostty = {
+      enable = true;
+      package = pkgs.ghostty-bin;
+      settings = {
+        font-family = "Berkeley Mono";
+        font-size = 14;
+        command = "/opt/homebrew/bin/fish --login --interactive";
+      };
+    };
     git = {
       signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont";
       settings = {
