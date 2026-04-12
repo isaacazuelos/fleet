@@ -106,7 +106,7 @@
           {app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app";}
           {app = "/System/Applications/Messages.app";}
           {app = "/System/Applications/Mail.app";}
-          {app = "${pkgs.ghostty-bin}/Applications/Ghostty.app";}
+          {app = "/Users/iaz/Applications/Home Manager Apps/Ghostty.app";}
         ];
         persistent-others = [
           {
