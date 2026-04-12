@@ -4,7 +4,6 @@
       age
       alejandra
       bat
-      fzf
       git
       nix-your-shell
       ripgrep
@@ -19,10 +18,14 @@
   };
 
   programs = {
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     git = {
       enable = true;
       ignores = [ ".DS_Store" ];
-      settings = { 
+      settings = {
         user = {
           name = "Isaac Azuelos";
           email = "isaac@azuelos.ca";
@@ -52,6 +55,14 @@
         })
       ];
       extraLuaConfig = builtins.readFile ./nvim/init.lua;
+    };
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+      enableInteractive = true;
+      settings = {
+        add_newline = false;
+      };
     };
   };
 }

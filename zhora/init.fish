@@ -1,3 +1,4 @@
+set -g fish_greeting
 set -gx PATH $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin $PATH
 
 # HACK: nix-your-shell is only ad-hoc signed and gets killed by macOS.

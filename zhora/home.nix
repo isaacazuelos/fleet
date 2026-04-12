@@ -10,8 +10,11 @@
       NH_FLAKE = "/Users/iaz/src/fleet";
     };
 
-    file.".config/ghostty/themes/gotham".source = ../common/ghostty-theme-gotham;
-    file.".config/zed/themes/gotham.json".source = ../common/zed-theme-gotham.json;
+    file = {
+      ".hushlogin".text = "";
+      ".config/ghostty/themes/gotham".source = ../common/ghostty-theme-gotham;
+      ".config/zed/themes/gotham.json".source = ../common/zed-theme-gotham.json;
+    };
   };
 
   programs = {
