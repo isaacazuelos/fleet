@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
       age
@@ -18,6 +19,10 @@
   };
 
   programs = {
+    fish = {
+      enable = true;
+      shellInit = builtins.readFile ./init.fish;
+    };
     fzf = {
       enable = true;
       enableFishIntegration = true;
