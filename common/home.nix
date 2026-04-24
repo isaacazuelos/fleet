@@ -37,6 +37,7 @@
         };
         init.defaultBranch = "main";
         commit.gpgsign = true;
+        core.sshCommand = "ssh";
         gpg.format = "ssh";
       };
     };
@@ -67,6 +68,15 @@
       enableInteractive = true;
       settings = {
         add_newline = false;
+       	package = {
+                  format = "[$symbol]($style)";
+       	};
+       	rust = {
+       	  format = "[$symbol]($style)";
+       	};
+       	nix_shell = {
+       	  format = "[$symbol]($style) ";
+       	};
       };
     };
   };

@@ -20,6 +20,7 @@
   programs = {
     claude-code = {
       enable = true;
+      package = pkgs.unstable.claude-code;
     };
     fish = {
       enable = true;
@@ -39,7 +40,7 @@
         window-width = 80;
         window-save-state = "never";
         window-step-resize = true;
-        background-opacity = 0.9;
+        background-opacity = 0.90;
         background-blur = "macos-glass-regular";
         macos-icon = "glass";
         theme = "gotham";
@@ -47,9 +48,6 @@
     };
     git = {
       signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont";
-      settings = {
-        "gpg \"ssh\"".program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      };
     };
   };
 }

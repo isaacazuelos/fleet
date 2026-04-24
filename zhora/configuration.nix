@@ -1,9 +1,17 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   system.stateVersion = 6;
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
+    overlays = [
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit (prev.stdenv.hostPlatform) system;
+          config.allowUnfree = true;
+        };
+      })
+    ];
   };
 
   nix.enable = true;
@@ -65,6 +73,7 @@
       "plex"
       "tailscale-app"
       "transmission"
+      "whatsapp"
       "vlc"
       "zed"
     ];
@@ -102,8 +111,7 @@
         orientation = "left";
         show-recents = false;
         persistent-apps = [
-          # Huh? No idea why these are not just in /Applications
-          {app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app";}
+          {app = "/Applications/Firefox.app";}
           {app = "/System/Applications/Messages.app";}
           {app = "/System/Applications/Mail.app";}
           {app = "/Applications/Things.app";}
