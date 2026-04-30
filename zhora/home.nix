@@ -49,5 +49,9 @@
     git = {
       signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIQq7CgkSKrrcjT9wsYRA0NlVawmv4/s5X5SROwN/ont";
     };
+    tmux = {
+      enable = true;
+      shell = "/opt/homebrew/bin/fish";
+    };
   };
 }
