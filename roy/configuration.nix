@@ -2,9 +2,8 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  # config,
-  # lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -20,6 +19,14 @@
     "flakes"
   ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit (prev.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader = {
@@ -51,22 +58,6 @@
 
   # Set your time zone.
   time.timeZone = "Canada/Mountain";
-
-  virtualisation = {
-    docker.enable = true;
-    oci-containers = {
-      backend = "docker";
-      containers.open-webui = {
-        image = "ghcr.io/open-webui/open-webui:main";
-        ports = ["3000:8080"];
-        volumes = ["open-webui:/app/backend/data"];
-        extraOptions = ["--add-host=host.docker.internal:host-gateway"];
-        environment = {
-          OLLAMA_BASE_URL = "http://host.docker.internal:11434";
-        };
-      };
-    };
-  };
 
   services = {
     resolved = {
