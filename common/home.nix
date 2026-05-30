@@ -10,6 +10,7 @@
       ripgrep
       statix
       tmux
+      tokei
 
       # language servers
       lua-language-server # for neovim
@@ -46,6 +47,8 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+      withRuby = false;    # needed for older stateVersion
+      withPython3 = false; # needed for older stateVersion
       plugins = with pkgs.vimPlugins; [
         plenary-nvim
         telescope-nvim
@@ -56,11 +59,11 @@
             owner = "shmerl";
             repo = "neogotham";
             rev = "HEAD";
-            sha256 = "sha256-5hCXNCgcZDZDTTPHc/zZdBM3P6ZIv2wlVkVXNWlQ/yM=";
+            sha256 = "sha256-aebBJp9K7RjhXCw3da2qqAOhgiwfiNXAfEta+SvBH6k=";
           };
         })
       ];
-      extraLuaConfig = builtins.readFile ./nvim/init.lua;
+      initLua = builtins.readFile ./nvim/init.lua;
     };
     starship = {
       enable = true;

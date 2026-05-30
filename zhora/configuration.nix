@@ -38,6 +38,11 @@
     home = "/Users/iaz";
   };
 
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;
+    reattach = true; 
+  };
+
   programs.fish.enable = true;
 
   environment = {
@@ -111,7 +116,7 @@
         orientation = "left";
         show-recents = false;
         persistent-apps = [
-          {app = "/Applications/Firefox.app";}
+          {app = "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app";}
           {app = "/System/Applications/Messages.app";}
           {app = "/System/Applications/Mail.app";}
           {app = "/Applications/Things.app";}
@@ -123,6 +128,7 @@
             folder = {
               path = "/Users/iaz/Downloads";
               showas = "grid";
+	      displayas = "folder";
             };
           }
         ];

@@ -8,7 +8,7 @@ set -gx PATH $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin /run/curre
 function nix
     if test (count $argv) -gt 0
         switch $argv[1]
-        case develop shell run
+        case develop shell
             command nix $argv --command /opt/homebrew/bin/fish
         case '*'
             command nix $argv
