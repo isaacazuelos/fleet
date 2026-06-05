@@ -101,6 +101,12 @@
       enable = true;
     };
 
+    # Homebridge for my AC unit which doesn't support HomeKit.
+    homebridge = {
+      enable = true;
+      openFirewall = true;
+    };
+
     # Media Center stuff
     plex = {
       enable = true;
