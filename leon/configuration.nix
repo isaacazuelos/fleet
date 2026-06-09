@@ -46,7 +46,7 @@
   networking = {
     hostName = "leon";
     networkmanager.enable = true;
-    wireless.enable = false;
+    # wireless.enable = false;
   };
 
   time.timeZone = "Canada/Mountain";

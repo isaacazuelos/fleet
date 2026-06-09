@@ -59,7 +59,7 @@
             owner = "shmerl";
             repo = "neogotham";
             rev = "HEAD";
-            sha256 = "sha256-aebBJp9K7RjhXCw3da2qqAOhgiwfiNXAfEta+SvBH6k=";
+            sha256 = "sha256-q8o2RhOeTBkS4P6CECrl/YgoL9iIn84HbTo/z2lWZ6w=";
           };
         })
       ];
