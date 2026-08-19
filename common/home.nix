@@ -6,6 +6,7 @@
       alejandra
       bat
       git
+      htop
       nix-your-shell
       ripgrep
       statix

@@ -5,6 +5,7 @@
   # config,
   # lib,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -29,6 +30,15 @@
       "noperm"
     ];
   };
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit (prev.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -108,6 +118,10 @@
     };
 
     # Media Center stuff
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     plex = {
       enable = true;
       openFirewall = true;
