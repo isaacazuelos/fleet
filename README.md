@@ -85,6 +85,33 @@ password=super-secure
 
 You'll have to manually go to each media center service and configure it.
 
+##### Auto-updates
+
+Every Wednesday at 5am Leon pulls `main`, runs `nix flake update`, builds and
+switches to the result, then commits and pushes the new `flake.lock` (see
+`leon/auto-update.nix`). It reboots if the kernel changed. If the checkout at
+`~/src/fleet` is dirty or not on `main`, it skips the run, so leaving work in
+progress there pauses updates.
+
+Pushing needs a deploy key with write access:
+
+```sh
+sudo ssh-keygen -t ed25519 -N "" -f /etc/fleet-deploy-key -C leon-auto-update
+sudo chown iaz /etc/fleet-deploy-key
+sudo chmod 600 /etc/fleet-deploy-key
+cat /etc/fleet-deploy-key.pub
+```
+
+Add the public key under the repo's Settings → Deploy keys, with "Allow write
+access" ticked.
+
+To run it by hand, or see how the last run went:
+
+```sh
+sudo systemctl start fleet-auto-update
+journalctl -u fleet-auto-update
+```
+
 ### Tom Server & Crow
 > RPi 4 based V2.4r2 and V0.2 
 

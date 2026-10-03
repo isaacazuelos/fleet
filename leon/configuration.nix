@@ -12,6 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware.nix
+    ./auto-update.nix
   ];
 
   hardware.enableAllFirmware = true;
@@ -86,6 +87,9 @@
       clean.extraArgs = "--keep-since 28d --keep 5";
     };
   };
+
+  # Weekly flake.lock bump, Wednesdays at 5am. See ./auto-update.nix.
+  services.fleet-auto-update.enable = true;
 
   services = {
     # Not really needed for a server, but nice to have if anything breaks.
