@@ -44,6 +44,8 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Nintendo Switch Pro / Joy-Con driver (Steam's udev rules come from programs.steam)
+  boot.kernelModules = ["hid_nintendo"];
 
   networking = {
     hostName = "roy";
@@ -124,6 +126,17 @@
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
+      # Adds a "Steam" (Big Picture in gamescope) session to the GDM picker
+      gamescopeSession = {
+        enable = true;
+        # Drive the TV on HDMI at 1080p120 (the GPU's max over HDMI)
+        args = [
+          "--prefer-output" "HDMI-A-1"
+          "--output-width" "1920"
+          "--output-height" "1080"
+          "--nested-refresh" "120"
+        ];
+      };
     };
     nh = {
       enable = true;

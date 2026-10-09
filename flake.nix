@@ -31,6 +31,7 @@
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.iaz = import ./zhora/home.nix;
           }
         ];
@@ -44,6 +45,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.iaz = import ./roy/home.nix;
           }
         ];
@@ -57,6 +59,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.iaz = import ./leon/home.nix;
           }
         ];
