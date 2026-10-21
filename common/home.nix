@@ -59,8 +59,8 @@
           src = pkgs.fetchFromGitLab {
             owner = "shmerl";
             repo = "neogotham";
-            rev = "HEAD";
-            sha256 = "sha256-q8o2RhOeTBkS4P6CECrl/YgoL9iIn84HbTo/z2lWZ6w=";
+            rev = "ed392289071d8be72161fdae4ae13c53094bbd43";
+            sha256 = "sha256-jnvj3K4rIsaVv01E4VB6ySZKKa/fXg2evkfH+OuEkSY=";
           };
         })
       ];
