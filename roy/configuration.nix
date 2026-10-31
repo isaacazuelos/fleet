@@ -14,6 +14,20 @@
   hardware.enableAllFirmware = true;
   hardware.graphics.enable = true;
 
+  fileSystems."/mnt/brainiac" = {
+    device = "//10.0.1.111/data";
+    fsType = "cifs";
+    options = [
+      "credentials=/etc/smbcredentials"
+      "uid=1000"
+      "gid=1000"
+      "iocharset=utf8"
+      "_netdev"
+      "nofail"
+      "noperm"
+    ];
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -44,8 +58,8 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Nintendo Switch Pro / Joy-Con driver (Steam's udev rules come from programs.steam)
-  boot.kernelModules = ["hid_nintendo"];
+  # Switch Pro / Joy-Con and PS5 DualSense drivers (Steam's udev rules come from programs.steam)
+  boot.kernelModules = ["hid_nintendo" "hid_playstation"];
 
   networking = {
     hostName = "roy";
@@ -126,6 +140,13 @@
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
+      # Steam's "Switch to Desktop" calls this SteamOS helper. Quitting Steam ends the
+      # gamescope session and drops back to GDM.
+      extraPackages = [
+        (pkgs.writeShellScriptBin "steamos-session-select" ''
+          exec steam -shutdown
+        '')
+      ];
       # Adds a "Steam" (Big Picture in gamescope) session to the GDM picker
       gamescopeSession = {
         enable = true;
